@@ -15,6 +15,8 @@
   --line: rgba(246, 242, 234, 0.16);
   --brand: #ff6b35;
   --brand-blue: #2f8fff;
+  --gold: #d4a64a;
+  --gold-light: #f1d27a;
   --gel-a: var(--brand);
   --gel-b: var(--brand-blue);
   --tempo: 7s;
@@ -330,6 +332,27 @@ fieldset { border: 0; padding: 0; min-width: 0; }
 .map { aspect-ratio: 4 / 3; background: var(--stage-3); }
 .map iframe { width: 100%; height: 100%; border: 0; filter: grayscale(1) contrast(0.9); }
 
+/* Awards (About page) */
+.awards { position: relative; overflow: hidden; background: radial-gradient(50% 70% at 30% 50%, rgba(212, 166, 74, 0.13), transparent 70%), var(--stage); }
+.awards-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(1.75rem, 5vw, 5rem); align-items: center; }
+.award-photo { position: relative; padding: 14px; }
+.award-photo::before, .award-photo::after { content: ''; position: absolute; width: 56px; height: 56px; border: 2px solid var(--gold); pointer-events: none; }
+.award-photo::before { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+.award-photo::after { right: 0; bottom: 0; border-left: 0; border-top: 0; }
+.award-photo img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 30%; box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55); }
+.award-photo figcaption { color: var(--ink-2); margin-top: 0.85rem; text-transform: none; letter-spacing: 0.02em; }
+.awards .eyebrow { color: var(--gold); }
+.award-badge { position: relative; width: 210px; aspect-ratio: 1; margin-top: 0.75rem; display: grid; place-items: center; }
+.award-badge svg { position: absolute; inset: 0; width: 100%; height: 100%; filter: drop-shadow(0 6px 18px rgba(212, 166, 74, 0.25)); }
+.award-badge-text { position: relative; display: grid; justify-items: center; text-align: center; line-height: 1; color: var(--gold-light); }
+.award-badge-text .mono { font-size: 0.54rem; letter-spacing: 0.14em; }
+.award-badge-text strong {
+  font-size: 1.75rem; line-height: 0.88; margin: 0.35rem 0 0.3rem;
+  background: linear-gradient(110deg, #c99a3a 0%, #f6dc8c 30%, #fff5d6 45%, #f6dc8c 60%, #c99a3a 100%); background-size: 250% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 4s ease-in-out 1s infinite;
+}
+@keyframes shine { 0%, 40% { background-position: 100% 0; } 80%, 100% { background-position: 0% 0; } }
+
 /* Legal pages */
 .legal-grid { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
 .legal-toc { position: sticky; top: 100px; }
@@ -384,6 +407,8 @@ fieldset { border: 0; padding: 0; min-width: 0; }
   .btn-row .btn { flex: 1 1 auto; }
   .desk-scene, .two-col { grid-template-columns: 1fr; }
   .two-col--flip > .prose { order: 2; }
+  .awards-grid { grid-template-columns: 1fr; }
+  .award-badge { width: 190px; }
   .teaser-grid {
     display: flex; gap: 0.75rem; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
     margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); scrollbar-width: none;

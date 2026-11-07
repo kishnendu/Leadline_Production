@@ -14,7 +14,8 @@ export function Logo() {
 
 export function useTitle(title: string) {
   useEffect(() => {
-    document.title = `${title} | LeadLine Production`
+    // Brand first, so it still shows when the browser tab is narrow
+    document.title = `LeadLine Production | ${title}`
   }, [title])
 }
 

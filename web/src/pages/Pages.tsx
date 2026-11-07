@@ -34,7 +34,78 @@ export function About() {
           <PhotoSlot label="Portrait of Subhodip Ganguly" ratio="4 / 3" />
         </div>
       </section>
+      <section className="section awards">
+        <div className="wrap awards-grid">
+          <figure className="award-photo" data-reveal>
+            <img
+              src="/media/award.jpg"
+              alt="Subhodip Ganguly and the LeadLine Production team receiving an award on stage from the Nari Shakti Foundation"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption className="mono">Subhodip Ganguly and the LeadLine team receiving the award</figcaption>
+          </figure>
+          <div className="prose award-copy" data-reveal>
+            <Eyebrow>Honours</Eyebrow>
+            <h2 className="display sub-title">Honoured by the Nari Shakti Foundation.</h2>
+            <p>LeadLine Production was recognised by the prestigious Nari Shakti Foundation as Event Partner, for successfully delivering their event from start to finish.</p>
+            <p>Our Founder &amp; CEO, Subhodip Ganguly, received the award on stage alongside the team who made it happen.</p>
+            <AwardBadge />
+          </div>
+        </div>
+      </section>
       <FinalCta title="Meet the crew." text="Tell us about your event and talk to the team who will run it." />
+    </div>
+  )
+}
+
+/** Gold laurel medallion for the Nari Shakti Foundation award. */
+function AwardBadge() {
+  // Leaves climb each side of the ring from the bottom towards the top
+  const leaves = Array.from({ length: 11 }, (_, i) => {
+    const deg = 100 + i * 12.5
+    const rad = (deg * Math.PI) / 180
+    return { x: 100 + Math.cos(rad) * 84, y: 100 + Math.sin(rad) * 84, rot: deg + 90 - 32, size: 1 - i * 0.035 }
+  })
+  return (
+    <div className="award-badge" role="img" aria-label="Award: Event Partner, Nari Shakti Foundation">
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <defs>
+          <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#f6dc8c" />
+            <stop offset="0.45" stopColor="#c99a3a" />
+            <stop offset="0.7" stopColor="#f1d27a" />
+            <stop offset="1" stopColor="#9c7224" />
+          </linearGradient>
+        </defs>
+        {[1, -1].map((side) => (
+          <g key={side} transform={side === -1 ? 'translate(200 0) scale(-1 1)' : undefined}>
+            <path d="M96 186 A84 84 0 0 1 30 47" fill="none" stroke="url(#gold)" strokeWidth="1.6" />
+            {leaves.map((leaf, i) => (
+              <ellipse
+                key={i}
+                cx={leaf.x}
+                cy={leaf.y}
+                rx={12 * leaf.size}
+                ry={4.4 * leaf.size}
+                fill="url(#gold)"
+                transform={`rotate(${leaf.rot} ${leaf.x} ${leaf.y}) translate(${-7 * leaf.size} 0)`}
+              />
+            ))}
+          </g>
+        ))}
+        <circle cx="100" cy="100" r="66" fill="rgba(212,166,74,0.06)" stroke="url(#gold)" strokeWidth="1.4" />
+        <circle cx="100" cy="100" r="61" fill="none" stroke="url(#gold)" strokeWidth="0.6" opacity="0.6" />
+      </svg>
+      <div className="award-badge-text">
+        <span className="mono">Event Partner</span>
+        <strong className="display">
+          Nari
+          <br />
+          Shakti
+        </strong>
+        <span className="mono">Foundation</span>
+      </div>
     </div>
   )
 }
