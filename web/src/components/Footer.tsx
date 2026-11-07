@@ -35,7 +35,10 @@ export function Footer() {
               {contact.phones.map((phone) => (
                 <a key={phone} href={`tel:${phone.replace(/\s/g, '')}`}>{phone}</a>
               ))}
-              <a href={`mailto:${contact.email}`}>{contact.email}</a>
+              <a href={`mailto:${contact.email}`}>
+                {contact.email.split('@')[0]}@<wbr />
+                {contact.email.split('@')[1]}
+              </a>
             </dd>
           </div>
           <div data-reveal>

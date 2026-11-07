@@ -282,7 +282,7 @@ fieldset { border: 0; padding: 0; min-width: 0; }
 .credits-word { font-size: 25.5vw; line-height: 0.76; text-align: center; color: var(--brand); margin-top: clamp(3rem, 7vw, 6rem); white-space: nowrap; }
 .credits-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1.5rem; padding-block: 1.5rem; font-size: 0.875rem; color: var(--ink-2); }
 .credits-base div { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem; padding-right: 72px; }
-.credits-base a, .credits-base button { text-decoration: underline; text-underline-offset: 3px; min-height: 28px; font-size: inherit; color: inherit; }
+.credits-base a, .credits-base button { display: inline-flex; align-items: center; text-decoration: underline; text-underline-offset: 3px; min-height: 32px; padding: 0; font-size: inherit; line-height: 1.2; color: inherit; }
 .credits-base a:hover, .credits-base button:hover { color: var(--ink); }
 
 /* WhatsApp button */
@@ -330,6 +330,28 @@ fieldset { border: 0; padding: 0; min-width: 0; }
 .map { aspect-ratio: 4 / 3; background: var(--stage-3); }
 .map iframe { width: 100%; height: 100%; border: 0; filter: grayscale(1) contrast(0.9); }
 
+/* Legal pages */
+.legal-grid { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+.legal-toc { position: sticky; top: 100px; }
+.legal-toc > .mono { color: var(--ink-2); margin-bottom: 0.75rem; }
+.legal-toc ol { display: grid; gap: 0.1rem; border-left: 1px solid var(--line); }
+.legal-toc a { display: block; padding: 0.35rem 0 0.35rem 1rem; font-size: 0.93rem; text-decoration: none; color: var(--ink-2); line-height: 1.35; transition: color 0.2s; }
+.legal-toc a:hover { color: var(--ink); }
+.legal-toc a .mono { color: var(--brand); margin-right: 0.35rem; font-size: 0.68rem; }
+.legal-body { max-width: 70ch; }
+.legal-updated { color: var(--ink-2); margin-bottom: 2rem; }
+.legal-section { padding-block: 0 2.5rem; margin-bottom: 2.5rem; border-bottom: 1px solid var(--line); scroll-margin-top: 90px; }
+.legal-section h2 { display: flex; align-items: baseline; gap: 0.85rem; font: 800 clamp(1.9rem, 3.4vw, 2.6rem)/1 var(--display); text-transform: uppercase; margin-bottom: 1.1rem; }
+.legal-section h2 .mono { color: var(--brand); font-weight: 500; }
+.legal-section h3 { font-size: 1.05rem; font-weight: 600; margin: 1.5rem 0 0.4rem; }
+.legal-section p, .legal-section li { color: color-mix(in srgb, var(--ink) 88%, transparent); }
+.legal-section p + p { margin-top: 0.85rem; }
+.legal-section ul { list-style: disc; padding-left: 1.25rem; display: grid; gap: 0.45rem; margin-top: 0.6rem; }
+.legal-section ul + p { margin-top: 0.85rem; }
+.legal-section a, .legal-other a { color: var(--ink); text-decoration-color: var(--brand); text-underline-offset: 3px; }
+.legal-section a:hover, .legal-other a:hover { color: var(--brand); }
+.legal-contact { display: grid; gap: 0.2rem; font-style: normal; margin-top: 0.85rem; padding: 1.1rem 1.25rem; background: var(--stage-2); border-left: 3px solid var(--brand); }
+
 @media (max-width: 1000px) {
   .ask-grid { grid-template-columns: 1fr; }
   .stage-frame { position: sticky; top: 72px; z-index: 5; }
@@ -376,7 +398,11 @@ fieldset { border: 0; padding: 0; min-width: 0; }
   .gallery-grid > div:not(.gallery-main) { aspect-ratio: 1; }
   .mini-cues { grid-template-columns: 1fr; }
   .credit-list > div { gap: 0.9rem; grid-template-columns: 0.8fr 1.2fr; }
+  .legal-grid { grid-template-columns: 1fr; }
+  .legal-toc { position: static; }
   .wa-float { right: 14px; bottom: 14px; }
+  .credits-base { flex-direction: column; align-items: center; text-align: center; gap: 0.9rem; padding-bottom: 92px; }
+  .credits-base div { justify-content: center; padding-right: 0; gap: 0.5rem 1.5rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

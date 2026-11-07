@@ -7,7 +7,8 @@ import { Opening } from './components/Opening'
 import { TransitionProvider } from './components/Transition'
 import { startSmoothScroll, prefersReducedMotion } from './lib/motion'
 import { Home } from './pages/Home'
-import { About, Careers, Contact, Legal, NotFound, ServiceDetail, Services, Work } from './pages/Pages'
+import { About, Careers, Contact, NotFound, ServiceDetail, Services, Work } from './pages/Pages'
+import { Privacy, Terms } from './pages/Legal'
 
 const INTRO_KEY = 'leadline-intro-seen'
 
@@ -48,8 +49,8 @@ export default function App() {
           <Route path="/work" element={<Work />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/privacy" element={<Legal title="Privacy policy" />} />
-          <Route path="/terms" element={<Legal title="Terms of service" />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

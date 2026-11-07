@@ -3,7 +3,7 @@
 
 export const contact = {
   phones: ['+91 7557885442', '+91 7810962073'],
-  email: 'info@leadlineproduction.com',
+  email: 'leadlineproduction@gmail.com',
   whatsapp: '7810962073',
   place: 'Durgapur, West Bengal, India',
 }

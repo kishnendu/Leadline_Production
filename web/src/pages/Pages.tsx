@@ -220,20 +220,6 @@ export function Contact() {
   )
 }
 
-export function Legal({ title }: { title: string }) {
-  useTitle(title)
-  return (
-    <div>
-      <PageHero eyebrow="The fine print" title={title} />
-      <section className="section">
-        <div className="wrap prose">
-          <p>This page is a placeholder. The final wording needs to come from LeadLine Production before launch.</p>
-        </div>
-      </section>
-    </div>
-  )
-}
-
 export function NotFound() {
   useTitle('Page not found')
   return (
