@@ -13,7 +13,8 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
 
   const go = useCallback(
     (to: string) => {
-      if (to === window.location.pathname) {
+      const here = window.location.pathname.replace(/\/+$/, '') || '/'
+      if (to === here) {
         scrollToTop()
         return
       }
