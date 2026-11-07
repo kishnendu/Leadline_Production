@@ -33,7 +33,7 @@ export function About() {
             <h2 className="display sub-title">Subhodip Ganguly</h2>
             <p className="mono">Founder &amp; CEO</p>
           </div>
-          <PhotoSlot label="Portrait of Subhodip Ganguly" ratio="4 / 3" />
+          <PhotoSlot src="/media/ceo-subhodip-ganguly.jpg" alt="Portrait of Subhodip Ganguly, Founder and CEO of LeadLine Production" label="Portrait of Subhodip Ganguly" ratio="1 / 1" className="ceo-photo" />
         </div>
       </section>
       <section className="section awards">
