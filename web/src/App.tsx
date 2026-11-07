@@ -9,6 +9,7 @@ import { startSmoothScroll, prefersReducedMotion } from './lib/motion'
 import { Home } from './pages/Home'
 import { About, Careers, Contact, NotFound, ServiceDetail, Services, Work } from './pages/Pages'
 import { Privacy, Terms } from './pages/Legal'
+import { WorkCase } from './pages/WorkCase'
 
 const INTRO_KEY = 'leadline-intro-seen'
 
@@ -47,6 +48,7 @@ export default function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/work" element={<Work />} />
+          <Route path="/work/:slug" element={<WorkCase />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<Privacy />} />

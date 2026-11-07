@@ -4,7 +4,8 @@ import { HeroStage } from '../components/HeroStage'
 import { Eyebrow, FinalCta, LightRig, PhotoSlot, useTitle } from '../components/Basics'
 import { LightingDesk } from '../components/LightingDesk'
 import { StageLink } from '../components/Transition'
-import { cues, services, testimonials, workItems } from '../data'
+import { cues, recentWorks, services, testimonials, workItems } from '../data'
+import { RecentHighlight } from './WorkCase'
 import { gsap, prefersReducedMotion, scrollToElement, useGSAP, useReveal } from '../lib/motion'
 
 const headline = ['Your ask', 'is our', 'task.']
@@ -121,6 +122,8 @@ export function Home({ ready }: { ready: boolean }) {
         </div>
       </section>
 
+      <RecentHighlight work={recentWorks[0]} compact />
+
       <section className="work-teaser">
         <div className="wrap">
           <div className="split-head" data-reveal>
@@ -135,7 +138,7 @@ export function Home({ ready }: { ready: boolean }) {
               const service = services.find((s) => s.channel === item.category) ?? services[0]
               return (
                 <StageLink to={`/services/${service.slug}`} className={`teaser-item teaser-item--${i}`} key={item.label} data-reveal>
-                  <PhotoSlot src={item.src} alt={item.alt} label={item.label} ratio="auto" />
+                  <PhotoSlot src={item.src} alt={item.alt} label={item.label} ratio="auto" eager />
                   <span className="teaser-cap">
                     <span className="mono">0{i + 1}</span>
                     <span className="display">{service.channel}</span>

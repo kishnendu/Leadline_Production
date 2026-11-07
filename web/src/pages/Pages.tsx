@@ -3,8 +3,10 @@ import { Navigate, useParams } from 'react-router-dom'
 import { AskMachine } from '../components/AskMachine'
 import { Eyebrow, FinalCta, PageHero, PhotoSlot, WhatsAppIcon, useTitle } from '../components/Basics'
 import { LightingDesk } from '../components/LightingDesk'
+import { ServiceGallery } from '../components/Showcase'
 import { StageLink } from '../components/Transition'
-import { contact, cues, services, whatsappUrl, workItems } from '../data'
+import { contact, cues, recentWorks, services, whatsappUrl, workItems } from '../data'
+import { RecentHighlight } from './WorkCase'
 import { useReveal } from '../lib/motion'
 
 export function About() {
@@ -165,10 +167,8 @@ export function ServiceDetail() {
         </div>
       </section>
       <section className="service-gallery">
-        <div className="wrap gallery-grid">
-          <div className="gallery-main" data-reveal><PhotoSlot src={service.image} alt={service.name} label={service.slotLabel} ratio="auto" /></div>
-          <div data-reveal><PhotoSlot label={`${service.channel}, detail shot`} ratio="auto" /></div>
-          <div data-reveal><PhotoSlot label={`${service.channel}, guests or crew`} ratio="auto" /></div>
+        <div className="wrap">
+          <ServiceGallery photos={[...(service.image ? [{ src: service.image, alt: service.name }] : []), ...(service.gallery ?? [])]} />
         </div>
       </section>
       <section className="section section--tint">
@@ -206,6 +206,7 @@ export function Work() {
   return (
     <div ref={root}>
       <PageHero eyebrow="Now showing" title="Our work." intro="A look at the stages we've built and the rooms we've filled." />
+      <RecentHighlight work={recentWorks[0]} compact />
       <section className="section">
         <div className="wrap">
           <div className="chips work-filter">

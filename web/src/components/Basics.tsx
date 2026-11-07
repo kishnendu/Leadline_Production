@@ -25,17 +25,19 @@ export function PhotoSlot({
   label,
   ratio = '3 / 2',
   className = '',
+  eager = false,
 }: {
   src?: string
   alt?: string
   label: string
   ratio?: string
   className?: string
+  eager?: boolean
 }) {
   if (src) {
     return (
       <figure className={`photo ${className}`} style={{ aspectRatio: ratio }}>
-        <img src={src} alt={alt} loading="lazy" decoding="async" />
+        <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
       </figure>
     )
   }
