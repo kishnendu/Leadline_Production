@@ -237,3 +237,37 @@ export function ServiceGallery({ photos }: { photos: Photo[] }) {
     </>
   )
 }
+
+/** Crew credits shown as hanging backstage passes. Tap a pass to see the full photo. */
+export function PassWall({ credits }: { credits: { src: string; event: string; detail: string; tone: string }[] }) {
+  const { open, viewer } = useLightbox(credits.map((c) => ({ src: c.src, alt: `${c.event}, ${c.detail}` })))
+  return (
+    <>
+      <div className="passes">
+        {credits.map((credit, i) => (
+          <button
+            type="button"
+            key={credit.src}
+            className="pass-card"
+            onClick={() => open(i)}
+            style={{ '--tone': credit.tone, '--tilt': `${(i % 2 ? 1 : -1) * (1.2 + (i % 3) * 0.6)}deg` } as CSSProperties}
+            aria-label={`Open photo: ${credit.event}, ${credit.detail}`}
+            data-reveal
+          >
+            <span className="pass-cord" aria-hidden="true" />
+            <span className="pass-body">
+              <span className="pass-slot" aria-hidden="true" />
+              <span className="pass-photo"><img src={credit.src} alt="" decoding="async" /></span>
+              <span className="pass-label">
+                <strong className="display">{credit.event}</strong>
+                <span className="mono">{credit.detail}</span>
+              </span>
+              <span className="pass-band mono" aria-hidden="true">All access</span>
+            </span>
+          </button>
+        ))}
+      </div>
+      {viewer}
+    </>
+  )
+}
