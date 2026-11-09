@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useRef, type AnchorHTMLAttributes, type ReactNode } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { gsap, ScrollTrigger, prefersReducedMotion, scrollToTop } from '../lib/motion'
+import { gsap, ScrollTrigger, prefersReducedMotion, scrollToElement, scrollToTop } from '../lib/motion'
 
 const TransitionContext = createContext<(to: string) => void>(() => {})
 
@@ -14,8 +14,10 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
   const go = useCallback(
     (to: string) => {
       const here = window.location.pathname.replace(/\/+$/, '') || '/'
-      if (to === here) {
-        scrollToTop()
+      const [toPath, toHash] = to.split('#')
+      if (toPath === here) {
+        if (toHash) scrollToElement(`#${toHash}`)
+        else scrollToTop()
         return
       }
       if (prefersReducedMotion() || !curtain.current) {
@@ -36,6 +38,8 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     scrollToTop()
     ScrollTrigger.refresh()
+    const hash = window.location.hash
+    if (hash) setTimeout(() => scrollToElement(hash), 450)
     if (first.current) {
       first.current = false
       return

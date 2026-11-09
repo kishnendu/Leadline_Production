@@ -3,7 +3,7 @@ import { Navigate, useParams } from 'react-router-dom'
 import { Eyebrow, FinalCta, LightRig, WhatsAppIcon, useTitle } from '../components/Basics'
 import { Gallery, VideoPlayer } from '../components/Showcase'
 import { StageLink } from '../components/Transition'
-import { recentWorks, whatsappUrl, type RecentWork } from '../data'
+import { recentWorks, upcoming, whatsappUrl, type RecentWork } from '../data'
 import { useReveal } from '../lib/motion'
 
 /** The magic-show style highlight, reused on the home page and the Our Work page. */
@@ -28,6 +28,37 @@ export function RecentHighlight({ work, compact = false }: { work: RecentWork; c
           <VideoPlayer clip={work.highlight} />
           <p className="mono recent-caption">Highlight · {work.highlight.title}</p>
         </div>
+      </div>
+    </section>
+  )
+}
+
+/** Posters for events that are booked but haven't happened yet. */
+export function UpcomingEvents() {
+  if (!upcoming.length) return null
+  return (
+    <section className="section upcoming">
+      <div className="wrap">
+        {upcoming.map((event) => (
+          <div className="upcoming-grid" key={event.title}>
+            <div className="upcoming-copy" data-reveal>
+              <p className="eyebrow mono recent-flag"><span className="upcoming-dot" />{event.kicker}</p>
+              <h2 className="display sub-title">{event.title}</h2>
+              <p className="lede">{event.text}</p>
+              <a className="btn btn-primary" href={whatsappUrl(event.whatsappText)} target="_blank" rel="noreferrer">
+                <WhatsAppIcon /> Book your date
+              </a>
+            </div>
+            <div className="upcoming-posters">
+              {event.posters.map((poster, i) => (
+                <figure className="upcoming-poster" key={poster.src} style={{ '--tilt': `${i % 2 ? 3 : -3}deg` } as React.CSSProperties} data-reveal>
+                  <img src={poster.src} alt={poster.alt} loading="lazy" decoding="async" />
+                  <span className="upcoming-tag mono">Coming soon</span>
+                </figure>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   )
@@ -98,7 +129,7 @@ export function WorkCase() {
             </div>
             <p className="mono moments-hint">Tap any clip to play with sound</p>
           </div>
-          <div className="moments">
+          <div className="moments" style={{ '--count': work.moments.length } as React.CSSProperties}>
             {work.moments.map((clip) => (
               <figure className="moment" key={clip.src} data-reveal>
                 <VideoPlayer clip={clip} variant="card" />
@@ -121,6 +152,8 @@ export function WorkCase() {
           <Gallery photos={work.photos} />
         </div>
       </section>
+
+      <UpcomingEvents />
 
       <FinalCta title="Your celebration next?" text="Birthdays, milestones and family celebrations. Tell us your ask." />
     </div>

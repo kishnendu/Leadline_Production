@@ -3,10 +3,10 @@ import { Navigate, useParams } from 'react-router-dom'
 import { AskMachine } from '../components/AskMachine'
 import { Eyebrow, FinalCta, PageHero, PhotoSlot, WhatsAppIcon, useTitle } from '../components/Basics'
 import { LightingDesk } from '../components/LightingDesk'
-import { ServiceGallery } from '../components/Showcase'
+import { PassWall, ServiceGallery, VideoPlayer } from '../components/Showcase'
 import { StageLink } from '../components/Transition'
-import { contact, cues, recentWorks, services, whatsappUrl, workItems } from '../data'
-import { RecentHighlight } from './WorkCase'
+import { contact, crewCredits, cues, recentWorks, services, whatsappUrl, workItems } from '../data'
+import { RecentHighlight, UpcomingEvents } from './WorkCase'
 import { useReveal } from '../lib/motion'
 
 export function About() {
@@ -24,6 +24,19 @@ export function About() {
             <p>Our team comprises seasoned event planners, creative designers, logistics specialists, and hospitality professionals with a proven track record of orchestrating world-class events across India.</p>
             <p>What sets us apart is our commitment to seamless execution and meticulous attention to detail. From intimate weddings to large-scale political conferences, we ensure every event exceeds expectations while staying true to your vision.</p>
           </div>
+        </div>
+      </section>
+      <section className="section passes-section" id="passes">
+        <div className="wrap">
+          <div className="split-head" data-reveal>
+            <div>
+              <Eyebrow>Backstage passes</Eyebrow>
+              <h2 className="display sub-title">Where our crew has worked.</h2>
+            </div>
+            <p className="passes-intro">Before every LeadLine show, our crew earned its passes on some of India's biggest stages, from Sunburn Festival to India's Got Talent.</p>
+          </div>
+          <PassWall credits={crewCredits} />
+          <p className="mono passes-hint">Tap a pass to see the photo</p>
         </div>
       </section>
       <section className="section section--tint">
@@ -171,7 +184,31 @@ export function ServiceDetail() {
           <ServiceGallery photos={[...(service.image ? [{ src: service.image, alt: service.name }] : []), ...(service.gallery ?? [])]} />
         </div>
       </section>
-      <section className="section section--tint">
+      {service.videos && (
+        <section className="section section--tint">
+          <div className="wrap">
+            <div className="split-head" data-reveal>
+              <div>
+                <Eyebrow>On video</Eyebrow>
+                <h2 className="display sub-title">{service.videos.heading}</h2>
+              </div>
+              <p className="passes-intro">{service.videos.text}</p>
+            </div>
+            <div className="moments" style={{ '--count': service.videos.clips.length } as CSSProperties}>
+              {service.videos.clips.map((clip) => (
+                <figure className="moment" key={clip.src} data-reveal>
+                  <VideoPlayer clip={clip} variant="card" />
+                  <figcaption>
+                    <strong className="display">{clip.title}</strong>
+                    <span>{clip.caption}</span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+      <section className="section">
         <div className="wrap">
           <div data-reveal>
             <Eyebrow>Run of show</Eyebrow>
@@ -207,6 +244,7 @@ export function Work() {
     <div ref={root}>
       <PageHero eyebrow="Now showing" title="Our work." intro="A look at the stages we've built and the rooms we've filled." />
       <RecentHighlight work={recentWorks[0]} compact />
+      <UpcomingEvents />
       <section className="section">
         <div className="wrap">
           <div className="chips work-filter">

@@ -4,7 +4,7 @@ import { HeroStage } from '../components/HeroStage'
 import { Eyebrow, FinalCta, LightRig, PhotoSlot, useTitle } from '../components/Basics'
 import { LightingDesk } from '../components/LightingDesk'
 import { StageLink } from '../components/Transition'
-import { cues, recentWorks, services, testimonials, workItems } from '../data'
+import { creditNames, cues, recentWorks, services, testimonials, workItems } from '../data'
 import { RecentHighlight } from './WorkCase'
 import { gsap, prefersReducedMotion, scrollToElement, useGSAP, useReveal } from '../lib/motion'
 
@@ -149,6 +149,16 @@ export function Home({ ready }: { ready: boolean }) {
             })}
           </div>
           <p className="mono teaser-hint" aria-hidden="true">Swipe to see more →</p>
+        </div>
+      </section>
+
+      <section className="credits-strip">
+        <div className="wrap credits-strip-inner" data-reveal>
+          <p className="mono">Our crew has worked on</p>
+          <ul>
+            {creditNames.map((name) => <li className="display" key={name}>{name}</li>)}
+          </ul>
+          <StageLink to="/about#passes" className="credits-strip-link mono">See the passes →</StageLink>
         </div>
       </section>
 

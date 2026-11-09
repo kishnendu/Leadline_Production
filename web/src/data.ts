@@ -21,6 +21,7 @@ export type Service = {
   image?: string
   slotLabel: string
   gallery?: { src: string; alt: string }[]
+  videos?: { heading: string; text: string; clips: Clip[] }
 }
 
 export const services: Service[] = [
@@ -58,6 +59,16 @@ export const services: Service[] = [
       { src: '/media/work/wedding-mehendi-lounge.jpg', alt: 'Colourful mehendi lounge with a pink floral backdrop' },
       { src: '/media/work/wedding-photography.jpg', alt: 'Photographer at work in a red and white decorated wedding venue' },
     ],
+    videos: {
+      heading: 'The baraat, live.',
+      text: 'Lit umbrellas, a full brass band and a groom\'s arrival the whole street turned out for. Tap any clip for sound.',
+      clips: [
+        { src: '/media/wedding/baraat-lights.mp4', poster: '/media/wedding/baraat-lights-poster.jpg', title: 'The lights', caption: 'Lit umbrellas lead the procession' },
+        { src: '/media/wedding/baraat-arrival.mp4', poster: '/media/wedding/baraat-arrival-poster.jpg', title: 'The arrival', caption: "The groom's car arrives with the band" },
+        { src: '/media/wedding/baraat-band.mp4', poster: '/media/wedding/baraat-band-poster.jpg', title: 'The band', caption: 'Brass band in full uniform' },
+        { src: '/media/wedding/baraat-dhol.mp4', poster: '/media/wedding/baraat-dhol-poster.jpg', title: 'The dhol', caption: 'Drums and dancing on the road' },
+      ],
+    },
   },
   {
     slug: 'political-events',
@@ -113,7 +124,7 @@ export const services: Service[] = [
       { src: '/media/work/gala-dance.jpg', alt: 'Dancers performing on a gala stage under purple lights' },
       { src: '/media/work/awards-night.jpg', alt: 'Awards night dinner with lit tables and a stage screen' },
       { src: '/media/birthday/magician.jpg', alt: 'Magician performing at a jungle-themed birthday' },
-      { src: '/media/birthday/backdrop.jpg', alt: 'Jungle-themed birthday backdrop with balloon arches' },
+      { src: '/media/birthday/cover.jpg', alt: 'Subhodip Ganguly at the jungle-themed birthday backdrop with balloon arches' },
     ],
   },
 ]
@@ -226,8 +237,8 @@ export const recentWorks: RecentWork[] = [
     tags: ['Birthday', 'Jungle theme', 'Live magic show'],
     summary:
       'A jungle-themed 5th birthday, produced end to end: themed decor and balloon arches, a custom backdrop, a lit entrance, a host on stage and a live magic show that had every child on their feet.',
-    cover: `${B}/backdrop.jpg`,
-    coverAlt: 'Jungle-themed birthday backdrop with balloon arches and a LeadLine Production banner',
+    cover: `${B}/cover.jpg`,
+    coverAlt: 'Subhodip Ganguly at the jungle-themed birthday backdrop with balloon arches and a LeadLine Production banner',
     highlight: {
       src: `${B}/magic-show.mp4`,
       poster: `${B}/magic-show-poster.jpg`,
@@ -246,6 +257,7 @@ export const recentWorks: RecentWork[] = [
       'Live magic show',
     ],
     moments: [
+      { src: `${B}/setup.mp4`, poster: `${B}/setup-poster.jpg`, title: 'The setup', caption: 'Our crew dressing the venue before guests arrive' },
       { src: `${B}/arrival.mp4`, poster: `${B}/arrival-poster.jpg`, title: 'The arrival', caption: 'From the lit entrance, down the red carpet', rotate: 90 },
       { src: `${B}/decor-2.mp4`, poster: `${B}/decor-2-poster.jpg`, title: 'The stage', caption: 'Jungle stage and balloon arches' },
       { src: `${B}/host.mp4`, poster: `${B}/host-poster.jpg`, title: 'The host', caption: 'Opening the show on stage' },
@@ -256,9 +268,37 @@ export const recentWorks: RecentWork[] = [
       { src: `${B}/magician.jpg`, alt: 'Magician in a top hat performing beside a lit number 5', tall: true },
       { src: `${B}/cake.jpg`, alt: 'Birthday cake decorated with flowers and jungle animals' },
       { src: `${B}/setup.jpg`, alt: 'Crew member checking the stage setup before guests arrive', tall: true },
-      { src: `${B}/backdrop.jpg`, alt: 'Custom jungle backdrop with balloon arches' },
+      { src: `${B}/cover.jpg`, alt: 'Subhodip Ganguly at the custom jungle backdrop with balloon arches' },
     ],
     crew: { src: `${B}/crew.jpg`, alt: 'The LeadLine Production crew standing in front of the birthday backdrop' },
     whatsappText: "Hi LeadLine Production! I saw the Jungle Safari birthday on your website. I'd like to plan a birthday party.",
+  },
+]
+
+// Events the LeadLine crew has worked on (crew credits, not LeadLine productions).
+export const crewCredits: { src: string; event: string; detail: string; tone: string }[] = [
+  { src: '/media/credits/sunburn-pass.jpg', event: 'Sunburn Festival', detail: 'Arena crew pass', tone: '#ff6b35' },
+  { src: '/media/credits/igt-pass.jpg', event: "India's Got Talent", detail: 'Sony TV · Crew', tone: '#ffc24a' },
+  { src: '/media/credits/sunburn-stage.jpg', event: 'Sunburn Festival', detail: 'Main stage build', tone: '#2f8fff' },
+  { src: '/media/credits/ioacon-pass.jpg', event: 'IOACON 2021', detail: 'Goa · Event crew', tone: '#27d7b0' },
+  { src: '/media/credits/big-picture-crew.jpg', event: 'The Big Picture', detail: 'Colors TV · Crew', tone: '#e02bff' },
+  { src: '/media/credits/sunburn-live-stage.jpg', event: 'Sunburn Festival', detail: 'Live stage', tone: '#ff6b35' },
+  { src: '/media/credits/ikfw-crew.jpg', event: 'India Kids Fashion Week', detail: 'Show crew', tone: '#f29bb2' },
+  { src: '/media/credits/crew-conference.jpg', event: 'Conference', detail: 'Event crew', tone: '#3b9dff' },
+]
+
+export const creditNames = ['Sunburn Festival', "India's Got Talent", 'The Big Picture', 'India Kids Fashion Week', 'IOACON 2021']
+
+// Upcoming events, shown on the Our Work page and at the end of the birthday story.
+export const upcoming: { title: string; kicker: string; text: string; posters: { src: string; alt: string }[]; whatsappText: string }[] = [
+  {
+    title: 'A Winter Princess 6th Birthday',
+    kicker: 'Coming up · Birthday celebration',
+    text: 'Snow-white castles, sparkling crowns and a princess-themed welcome. Our crew is already designing the next celebration.',
+    posters: [
+      { src: '/media/upcoming/winter-princess-1.jpg', alt: 'Welcome poster for a winter princess themed 6th birthday celebration' },
+      { src: '/media/upcoming/winter-princess-2.jpg', alt: 'Second welcome poster design for the same 6th birthday celebration' },
+    ],
+    whatsappText: "Hi LeadLine Production! I saw your upcoming princess birthday on the website. I'd like to book a date for a celebration.",
   },
 ]

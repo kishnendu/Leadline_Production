@@ -15,7 +15,7 @@ const template = readFileSync(new URL('index.html', dist), 'utf8')
 
 const routes = [
   { path: '/', title: `${BRAND} | Your Ask Is Our Task`, description: DEFAULT_DESC },
-  { path: '/about', title: `${BRAND} | About`, description: 'Meet the LeadLine Production crew, led by Founder & CEO Subhodip Ganguly, and our honour from the Nari Shakti Foundation.' },
+  { path: '/about', title: `${BRAND} | About`, description: "Meet the LeadLine Production crew, led by Founder & CEO Subhodip Ganguly: crew credits from Sunburn Festival, India's Got Talent and more, and our honour from the Nari Shakti Foundation." },
   { path: '/services', title: `${BRAND} | Services`, description: 'Corporate events, weddings, political events, concerts, trade shows and social galas, planned and produced by one crew.' },
   ...services.map((s) => ({ path: `/services/${s.slug}`, title: `${BRAND} | ${s.name}`, description: s.summary, image: s.image })),
   { path: '/work', title: `${BRAND} | Our Work`, description: 'Weddings, concerts, conferences, galas and celebrations produced by LeadLine Production.' },
